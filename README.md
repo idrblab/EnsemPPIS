@@ -1,4 +1,4 @@
-# Ensemppis
+# EnsemPPIS
 
 ### Please follow these steps to train the EnsemPPIS for the prediction of protein-protein interaction sites (PPIS):
 
