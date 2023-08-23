@@ -11,7 +11,7 @@ import pandas as pd
 
 
 # Test_355
-f1 = open('./Datasets/DELPHI_task/Test_355.fa','r')
+f1 = open('./Datasets/DELPHI_task/Dset_355_Pid_Pseq_label.txt','r')
 
 byt1 = f1.readlines()
 
