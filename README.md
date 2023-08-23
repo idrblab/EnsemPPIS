@@ -18,17 +18,19 @@
 
 7. Run `'predict_EnsemPPIS.py'` to predicte PPIS using the trained TransformerPPIS and GatCNNPPIS.
 
-### datasets:
+### Datasets:
     
 All the benchmark datasets used in this study was provided in the  `'datasets'` folder.
 
 
-### training:
+### Training:
+The two base models of EnsemPPIS (TransformerPPIS and GatCNNPPIS) were trained separately.
+
 The commond for training TransformerPPIS on CPU:
 
     nohup python main-TransformerPPIS.py > out-TransformerPPIS.txt 2>&1 &
 
-The commond for training TransformerPPIS on single GPU or distributed training TransformerPPIS on multiple GPUs:
+The commond for training TransformerPPIS using single GPU or distributed training using multiple GPUs:
 single GPU: 
 
     CUDA_VISIBLE_DEVICES=1 nohup python -m torch.distributed.launch --nproc_per_node=1 --master_port 6666 main-TransformerPPIS.py > out-TransformerPPIS.txt 2>&1 &
