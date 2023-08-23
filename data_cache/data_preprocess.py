@@ -10,8 +10,8 @@ import pandas as pd
 
 
 
-# Test_315
-f1 = open('./Datasets/Test_315.fa','r')
+# Test_355
+f1 = open('./Datasets/DELPHI/Test_355.fa','r')
 
 byt1 = f1.readlines()
 
@@ -27,7 +27,7 @@ df1['data'].replace(regex=True,inplace=True,to_replace=r'>',value=r'')
 
 name, sequence, label = [], [], []
 i = 0
-while i < 315:
+while i < 355:
     name.append(df1['data'].iloc[3*i])
     sequence.append(df1['data'].iloc[3*i+1])
     label.append(df1['data'].iloc[3*i+2])
@@ -38,17 +38,17 @@ dict_new = {'name': name,
         'label': label}
 new = DataFrame(dict_new)
 print(new.shape[0])
-new.to_csv('Test_315_name_seq_label.csv', index = False)
+new.to_csv('Test_355_name_seq_label.csv', index = False)
 
-# Test_315 label
+# Test_355 label
 sequences = []
-df = pd.read_csv('Test_315_name_seq_label.csv', sep=',')
+df = pd.read_csv('Test_355_name_seq_label.csv', sep=',')
 sequences = df['label'].values.tolist()
 print(sequences[0][0])
 pickle.dump(sequences, open('Test_315_label.pkl','wb')) 
 
-# Test_315 list
-df = pd.read_csv('Test_315_name_seq_label.csv', sep=',')
+# Test_355 list
+df = pd.read_csv('Test_355_name_seq_label.csv', sep=',')
 sequences = []
 sequences = df['sequence'].values.tolist()
 names = df['name'].values.tolist()
@@ -64,7 +64,7 @@ for index in range(len(sequences)):
         count.append(all_count)
         id_idx.append(idx)
         ii.append(i)
-        dset.append('Test_315')
+        dset.append('Test_355')
         protein_id.append(name)
         seq_length.append(length)
         all_count = all_count + 1
@@ -72,7 +72,7 @@ for index in range(len(sequences)):
 
 tulpe = list(zip(count,id_idx,ii,dset,protein_id,seq_length))
 print(len(tulpe))
-pickle.dump(tulpe, open('Test_315_dset_list.pkl','wb')) 
+pickle.dump(tulpe, open('Test_355_dset_list.pkl','wb')) 
 
 
 
