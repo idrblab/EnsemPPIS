@@ -6,7 +6,7 @@
 
 2. Put your sequence data into the `'data_cache'` folder, and run `'data_preprocess.py'` in this folder to generate three pkl files, namely, encode_data.pkl, label.pkl and dset_list.pkl;
 
-3. Download the pre-trained ProtBERT model from `http://ensemppis.idrblab.cn/download_ProtBERT`, and put it into the `'feature_generator'` folder;
+3. Download the pre-trained ProtBERT model (pytorch_model.bin) from `http://ensemppis.idrblab.cn/download_ProtBERT`, and put it into the `'feature_generator'` folder;
 
 4. Run `'ProtBERT_feature_generator.py'` in the `'feature_generator'` folder to generate ProtBERT encoding results for sequences;
 
