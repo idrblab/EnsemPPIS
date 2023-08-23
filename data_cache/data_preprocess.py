@@ -47,7 +47,7 @@ sequences = df['label'].values.tolist()
 print(sequences[0][0])
 pickle.dump(sequences, open('422_label.pkl','wb')) 
 
-# Test_355 list
+# 422 list
 df = pd.read_csv('422_name_seq_label.csv', sep=',')
 sequences = []
 sequences = df['sequence'].values.tolist()
