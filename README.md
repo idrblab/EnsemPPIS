@@ -23,7 +23,7 @@
 All the benchmark datasets used in this study was provided in the  `'datasets'` folder.
 
 
-### Training:
+### Training commond:
 The two base models of EnsemPPIS (TransformerPPIS and GatCNNPPIS) were trained separately.
 
 The commond for training TransformerPPIS on CPU:
