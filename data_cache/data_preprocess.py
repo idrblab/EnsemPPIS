@@ -11,7 +11,7 @@ import pandas as pd
 
 
 # Test_355
-f1 = open('./Datasets/DELPHI/Test_355.fa','r')
+f1 = open('./Datasets/DELPHI_task/Test_355.fa','r')
 
 byt1 = f1.readlines()
 
