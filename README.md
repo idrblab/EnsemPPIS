@@ -1,5 +1,7 @@
 # EnsemPPIS
+The ensemble framework of EnsemPPIS for predicting PPI sites:
 ![image](/figure/EnsemPPIS.png)
+
 ### Please follow these steps to train the EnsemPPIS for the prediction of protein-protein interaction sites (PPIS):
 
 1. Create a Python virtual environment (version=3.7.11) according to the `'requirement.txt'` file;
