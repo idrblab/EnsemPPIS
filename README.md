@@ -1,8 +1,8 @@
-# EnsemPPIS
-The ensemble framework of EnsemPPIS for predicting PPI sites:
+# The ensemble framework of EnsemPPIS for predicting protein-protein interaction sites (PPIS):
+
 ![image](/figure/EnsemPPIS.png)
 
-### Please follow these steps to train the EnsemPPIS for the prediction of protein-protein interaction sites (PPIS):
+### Please follow these steps to train the EnsemPPIS for the prediction of PPIS:
 
 1. Create a Python virtual environment (version=3.7.11) according to the `'requirement.txt'` file;
 
@@ -10,7 +10,7 @@ The ensemble framework of EnsemPPIS for predicting PPI sites:
 
 3. Download the pre-trained ProtBERT model (pytorch_model.bin) from `http://ensemppis.idrblab.cn/download_ProtBERT`, and put it into the `'feature_generator'` folder;
 
-4. Run `'ProtBERT_feature_generator.py'` in the `'feature_generator'` folder to generate ProtBERT encoding results for sequences;
+4. Run `'ProtBERT_feature_generator.py'` in the `'feature_generator'` folder to generate ProtBERT enbeddings for sequences;
 
 5. Run `'main-TransformerPPIS.py'` to train the TransformerPPIS model;
 
