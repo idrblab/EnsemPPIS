@@ -252,22 +252,23 @@ class Predictor2(nn.Module):
         return sum, out
 
     def __call__(self, data, train=True):
-        protein, index, correct_interaction = data
+        
         Loss = nn.CrossEntropyLoss(weight=torch.from_numpy(np.array([1, 5])).float().to(self.device))
 
         if train:
+            protein, index, correct_interaction = data
             sum, predicted_interaction = self.forward(protein, index)
 
             loss2 = Loss(predicted_interaction, correct_interaction)
             return loss2
 
         else:
+            protein, index = data
             sum, predicted_interaction = self.forward(protein, index)
-            correct_labels = correct_interaction.to('cpu').data.numpy()
             ys = F.softmax(predicted_interaction, 1).to('cpu').data.numpy()
             predicted_labels = np.argmax(ys, axis=1)
             predicted_scores = ys[:, 1]
-            return correct_labels, predicted_labels, predicted_scores
+            return predicted_labels, predicted_scores
 
 
 def todevice(proteins, index, labels, device):
@@ -344,3 +345,23 @@ class Tester2(object):
 
     def save_model(self, model, filename):
         torch.save(model.module.state_dict(), filename)
+
+
+class Predictor_test2(object):
+    def __init__(self, model):
+        self.model = model
+
+    def test(self, dataloader, device):
+        self.model.eval()
+        Y, S = [], []
+        with torch.no_grad():
+            for batch_idx, (protein, index) in enumerate(dataloader):
+                print(batch_idx)
+
+                proteins_new = torch.Tensor(protein).to(device)
+                index = index   
+                data_pack =  (proteins_new, index)
+                predicted_labels, predicted_scores = self.model(data_pack, train=False)
+                Y.extend(predicted_labels)
+                S.extend(predicted_scores)
+        return Y, S
