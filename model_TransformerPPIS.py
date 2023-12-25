@@ -272,22 +272,23 @@ class Predictor(nn.Module):
         return sum, attention, out
 
     def __call__(self, data, train=True):
-        local, protein, correct_interaction, local_num, protein_num = data
+        
         Loss = nn.CrossEntropyLoss(weight=torch.from_numpy(np.array([1, 5])).float().to(self.device))
 
         if train:
+            local, protein, correct_interaction, local_num, protein_num = data
             sum, attention, predicted_interaction = self.forward(local, protein,local_num,protein_num)
 
             loss2 = Loss(predicted_interaction, correct_interaction)
             return loss2
 
         else:
+            local, protein, local_num, protein_num = data
             sum, attention, predicted_interaction = self.forward(local, protein,local_num,protein_num)
-            correct_labels = correct_interaction.to('cpu').data.numpy()
             ys = F.softmax(predicted_interaction, 1).to('cpu').data.numpy()
             predicted_labels = np.argmax(ys, axis=1)
             predicted_scores = ys[:, 1]
-            return correct_labels, predicted_labels, predicted_scores
+            return predicted_labels, predicted_scores
 
 
 def todevice(locals, proteins, labels, local_num, protein_num, device):
@@ -366,3 +367,25 @@ class Tester(object):
 
     def save_model(self, model, filename):
         torch.save(model.module.state_dict(), filename)
+
+
+class Predictor_test(object):
+    def __init__(self, model):
+        self.model = model
+
+    def test(self, dataloader, device):
+        self.model.eval()
+        Y, S = [], []
+        with torch.no_grad():
+            for batch_idx, (local, protein, local_num, protein_num) in enumerate(dataloader):
+                print(batch_idx)
+                locals_new = torch.Tensor(local).to(device)
+                proteins_new = torch.Tensor(protein).to(device)
+                local_num = local_num
+                protein_num = protein_num
+                data_pack = (locals_new, proteins_new, local_num, protein_num)
+
+                predicted_labels, predicted_scores = self.model(data_pack, train=False)
+                Y.extend(predicted_labels)
+                S.extend(predicted_scores)
+        return Y, S
