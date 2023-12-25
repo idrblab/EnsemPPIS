@@ -179,7 +179,7 @@ def main(seed):
 
     model1.to(device)
 
-    tester1 = Tester(model1)
+    tester1 = Predictor_test(model1)
 
 
     encoder2 = Encoder2(protein_dim1, hid_dim, n_layers, kernel_size, dropout, device)
@@ -189,7 +189,7 @@ def main(seed):
 
     model2.to(device)
 
-    tester2 = Tester2(model2)
+    tester2 = Predictor_test2(model2)
 
     """Output files."""
 
@@ -304,6 +304,4 @@ if __name__ == "__main__":
 
     SEED = 1
     main(SEED)
-
-
 
