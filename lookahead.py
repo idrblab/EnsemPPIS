@@ -5,7 +5,6 @@ from torch.optim.optimizer import Optimizer
 import torch
 import warnings
 
-
 class Lookahead(Optimizer):
     def __init__(self, optimizer, k=5, alpha=0.5):
         self.optimizer = optimizer
